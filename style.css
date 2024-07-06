@@ -1,0 +1,122 @@
+body {
+    font-family: "Poppins";
+    background-color: #D4FCC3;
+    font-size: 22px;
+}
+
+#heading {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 70px;
+    font-weight: bold;
+    font-family: "Honk";
+}
+
+.startGame {
+    width: 350px;
+    height: 200px;
+    margin: 80px auto;
+    background-color: #F3C969;
+    border-radius: 20px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #362C28;
+}
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    font-size: 55px;
+    font-family: "Silkscreen";
+    display: none;
+}
+
+.flashcard {
+    width: 350px;
+    height: 420px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 35px auto;
+    background-color: #F3C969;
+    border-radius: 20px;
+}
+
+.timer {
+    margin-top: -17px;
+    font-family: "Indie Flower";
+    font-weight: 800;
+    font-size: 35px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.question {
+    margin: 20px 5px 15px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: -35px;
+}
+
+button {
+    margin: 4px 0 4px 0;
+    padding: 4px 0 4px 0;
+    border-radius: 20px;
+    border: none;
+    font-family: "Poppins";
+    font-size: 20px;
+    background-color: #362C28;
+    color: #EDFF86;
+    cursor: pointer;
+    transition: scale 0.15s;
+}
+
+button:hover {
+    scale: 0.95;
+}
+
+.scoreCard {
+    width: 350px;
+    height: 200px;
+    margin: 80px auto;
+    background-color: #F3C969;
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #362C28;
+}
+
+.play-again {
+    padding: 4px 20px 4px 20px;
+}
+
+.startQuiz {
+    padding: 4px 20px 4px 20px;
+}
+
+#title,
+#begin {
+    font-family: "Bungee Spice";
+    font-size: 25px;
+    font-weight: 800;
+    background-color: #D9F7FA;
+}
+
+.result {
+    font-family: "Dancing Script";
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 30px;
+}
