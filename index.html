@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz</title>
+    <title>Quiz Web App</title>
+    <link rel="icon" type="image/x-icon" href="quiz.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,10 +24,11 @@
 
   <body>
     <div id="heading">It's Quiz Time</div>
-    <div class="scoreCard">
+    <div class="scoreCard" >
       <div id="title">SCORE</div>
       <div class="result"><span id="score">9</span>/10</div>
       <button class="play-again">Play Again !</button>
+      <button class="review-game">Review the Game !</button>
     </div>
     <div class="countdown">
       <div id="start-timer">03</div>
@@ -45,6 +47,11 @@
         <button class="option4"></button>
       </div>
     </div>
+    <div class="review">
+      <button id="go-back-button"><i class="fa-solid fa-backward"></i> Go Back</button>
+      <p id="review-heading">Game Review</p>
+    </div>
+    <script src="https://kit.fontawesome.com/9a0b6d7154.js" crossorigin="anonymous"></script>
     <script src="app.js"></script>
   </body>
 </html>

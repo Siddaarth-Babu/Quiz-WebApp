@@ -5,12 +5,16 @@ const body = document.querySelector('body');
 const playButton = document.querySelector('.play-again');
 const startGame = document.querySelector('.startGame');
 const startGameBtn = document.querySelector('.startQuiz');
-let seconds, correctOption, correctButton, response, data, score = 0, category = categoryGenerator();
+const reviewGame = document.querySelector('.review');
+const goBack = document.querySelector('#go-back-button');
+const reviewGameBtn = document.querySelector('.review-game');
+let seconds, correctOption, correctButton, response, data, score = 0, category = categoryGenerator(),selectedAns = [],correctAns = [];
 const api_url = `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`
 
 async function getData() {
     response = await fetch(api_url);
     data = await response.json();
+    console.log(data);
 }
 
 async function setQuestion(index) {
@@ -35,7 +39,11 @@ async function setQuestion(index) {
             </div>`;
 
             body.appendChild(newFlash);
+            const options = newFlash.querySelector('.options');
+            const btn = options.getElementsByTagName('button');
             correctOption = randomNumber();
+            console.log(correctOption);
+            correctAns.push(correctOption);
 
             let i = 1;
 
@@ -60,9 +68,44 @@ async function setQuestion(index) {
                 }
                 timeSet.innerHTML = seconds < 10 ? '0' + seconds : seconds;
             }, 1000);
-            checkAnswer();
+            checkAnswer(btn);
         }, t)
     });
+}
+
+function pushCard(){
+    for(let k=0;k<10;k++)
+{       let reviewFlash = document.createElement('div');
+        reviewFlash.classList.add('reviewFlash');
+        reviewFlash.style.display = "flex"
+        reviewFlash.innerHTML = `
+        <div class="review-question">${data.results[k].question}</div>
+        <div class="review-options review-options-${k+1}">
+            <button class="review-option1"></button>
+            <button class="review-option2"></button>
+            <button class="review-option3"></button>
+            <button class="review-option4"></button>
+        </div>`;
+        let correct = reviewFlash.querySelector(`.review-option${correctAns[k]}`);
+        let select = reviewFlash.querySelector(`.review-option${selectedAns[k]}`);
+        correct.innerHTML = data.results[k].correct_answer;
+        let reviewOptions = reviewFlash.querySelector(`.review-options-${k+1}`);
+        const btns = reviewOptions.querySelectorAll('button');
+        let flag=1;
+        data.results[k].incorrect_answers.forEach(e=>{
+            if(flag==correctAns[k]){
+                flag++;
+            }
+            reviewFlash.querySelector(`.review-option${flag}`).innerHTML = e;
+                flag++;
+        })
+        select?.classList.add('selected');
+        correct.classList.add('correct_ans');
+        if(selectedAns[k]===correctAns[k]){
+            correct.classList.add('correct_sel');
+        }
+        reviewGame.appendChild(reviewFlash);
+    }
 }
 
 function categoryGenerator() {
@@ -75,21 +118,24 @@ function randomNumber() {
     return j;
 }
 
-function checkAnswer() {
-    for (let i = 0; i < button.length; i++) {
-        button[i].addEventListener('click', () => {
-            if ((button[i].getAttribute('class')) === (correctButton.getAttribute('class'))) {
-                button[i].style.backgroundColor = "#0BDA51";
+function checkAnswer(b) {
+    for (let i = 0; i < b.length; i++) {
+        b[i].addEventListener('click', () => {
+            if ((b[i].getAttribute('class')) === (correctButton.getAttribute('class'))) {
+                b[i].style.backgroundColor = "#0BDA51";
                 score++;
             }
             else {
-                button[i].style.backgroundColor = "#C51E3A";
+                b[i].style.backgroundColor = "#C51E3A";
                 correctButton.style.backgroundColor = "#0BDA51";
             }
             Array.from(button).forEach(button => {
                 button.disabled = true;
                 playButton.disabled = false;
+                goBack.disabled = false;
+                reviewGameBtn.disabled = false;
             })
+            selectedAns.push(i+1);
         })
     }
 }
@@ -134,5 +180,18 @@ async function displayAllQuestion() {
 playButton.addEventListener('click', () => {
     window.location.reload();
 })
+
+reviewGameBtn.addEventListener('click',()=>{
+    reviewGame.style.display = "flex";
+    pushCard();
+    document.querySelector('#heading').style.display = "none";
+    scorecard.style.display = "none";
+    goBack.addEventListener('click',()=>{
+        reviewGame.style.display = "none";
+        document.querySelector('#heading').style.display = "flex";
+        scorecard.style.display = "flex";
+    })
+})
+
 
 resetGame();

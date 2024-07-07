@@ -1,5 +1,5 @@
 body {
-    font-family: "Poppins";
+    
     background-color: #D4FCC3;
     font-size: 22px;
 }
@@ -35,7 +35,7 @@ body {
     display: none;
 }
 
-.flashcard {
+.flashcard, .reviewFlash {
     width: 350px;
     height: 420px;
     display: none;
@@ -54,13 +54,13 @@ body {
     font-size: 35px;
 }
 
-.options {
+.options, .review-options {
     display: flex;
     flex-direction: column;
     width: 90%;
 }
 
-.question {
+.question,.review-question {
     margin: 20px 5px 15px 5px;
     display: flex;
     flex-wrap: wrap;
@@ -101,6 +101,10 @@ button:hover {
 .play-again {
     padding: 4px 20px 4px 20px;
 }
+.review-game {
+    padding: 4px 20px 4px 20px;
+    background-color: #362C28;
+}
 
 .startQuiz {
     padding: 4px 20px 4px 20px;
@@ -119,4 +123,39 @@ button:hover {
     font-weight: 700;
     letter-spacing: 2px;
     font-size: 30px;
+}
+
+.review{
+    display: none;
+    position: relative;
+    justify-content:space-evenly;
+    align-items:center;
+    flex-wrap: wrap;
+}
+#review-heading{
+    width: 100%;
+    margin : 0;
+    margin-top: 15px ;
+    text-align: center;
+    text-decoration: dashed underline;
+    font-weight: 700;
+    font-family: "Poppins";
+}
+
+#go-back-button{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100px;
+    font-size: 16px;
+    background-color: #362C28;
+}
+.selected{
+    background-color: magenta;
+}
+.correct_sel{
+    background: linear-gradient(45deg,#0BDA51,magenta);
+}
+.correct_ans{
+    background-color: #0BDA51;
 }
